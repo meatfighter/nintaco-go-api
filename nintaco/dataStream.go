@@ -178,3 +178,88 @@ func (d *dataStream) writeString(value string) error {
 	}
 	return nil
 }
+
+func (d *dataStream) readString() (string, error) {
+	length, e := d.readInt()
+	if e != nil {
+		return "", e
+	}
+	if length < 0 || length > arrayLength {
+		e = d.conn.Close()
+		if e != nil {
+			return "", e
+		}
+		return "", fmt.Errorf("Invalid array length: %d", length)
+	}
+	cs := make([]rune, length)
+	for i := 0; i < length; i++ {
+		b, e := d.in.ReadByte()
+		if e != nil {
+			return "", e
+		}
+		cs[i] = rune(b)
+	}
+	return string(cs), nil
+}
+
+func (d *dataStream) writeStringArray(array []string) error {
+	length := len(array)
+	e := d.writeInt(length)
+	if e != nil {
+		return e
+	}
+	for i := 0; i < length; i++ {
+		e = d.writeString(array[i])
+		if e != nil {
+			return e
+		}
+	}
+	return nil
+}
+
+func (d *dataStream) readStringArray(array []string) (int, error) {
+	length, e := d.readInt()
+	if e != nil {
+		return 0, e
+	}
+	if length < 0 || length > len(array) {
+		e = d.conn.Close()
+		if e != nil {
+			return 0, e
+		}
+		return 0, fmt.Errorf("Invalid array length: %d", length)
+	}
+	for i := 0; i < length; i++ {
+		array[i], e = d.readString()
+		if e != nil {
+			return 0, e
+		}
+	}
+	return length, nil
+}
+
+func (d *dataStream) readDynamicStringArray() ([]string, error) {
+	length, e := d.readInt()
+	if e != nil {
+		return nil, e
+	}
+	if length < 0 || length > arrayLength {
+		e = d.conn.Close()
+		if e != nil {
+			return nil, e
+		}
+		return nil, fmt.Errorf("Invalid array length: %d", length)
+	}
+	array := make([]string, length)
+	for i := 0; i < length; i++ {
+		array[i], e = d.readString()
+		if e != nil {
+			return nil, e
+		}
+	}
+	return array, nil
+}
+
+func (d *dataStream) flush() error {
+	return d.out.Flush()
+}
