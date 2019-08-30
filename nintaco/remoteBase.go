@@ -47,7 +47,7 @@ func newRemoteAPI(host string, port int) *remoteAPI {
 		host:            host,
 		port:            port,
 	}
-	for eventType := range eventTypes {
+	for _, eventType := range eventTypes {
 		r.listenerObjects[eventType] = make(map[int]interface{})
 	}
 	return r
