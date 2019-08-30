@@ -104,7 +104,7 @@ func (r *remoteAPI) fireDeactivated() {
 		deactivateListeners = append(deactivateListeners, listener.(DeactivateListener))
 	}
 	for i := length - 1; i >= 0; i-- {
-		deactivateListeners[i].apiDisabled()
+		deactivateListeners[i].APIDisabled()
 	}
 }
 
@@ -117,7 +117,7 @@ func (r *remoteAPI) fireStatusChanged(message string, params ...interface{}) {
 		statusListeners = append(statusListeners, listener.(StatusListener))
 	}
 	for i := length - 1; i >= 0; i-- {
-		statusListeners[i].statusChanged(msg)
+		statusListeners[i].StatusChanged(msg)
 	}
 }
 
@@ -183,7 +183,7 @@ func (r *remoteAPI) probeEvents() error {
 			if e != nil {
 				return e
 			}
-			result := obj.(accessPoint).listener.accessPointHit(accessPointType, address, value)
+			result := obj.(accessPoint).listener.AccessPointHit(accessPointType, address, value)
 			e = r.stream.writeByte(eventResponse)
 			if e != nil {
 				return e
@@ -195,21 +195,21 @@ func (r *remoteAPI) probeEvents() error {
 		} else {
 			switch eventType {
 			case activate:
-				obj.(ActivateListener).apiEnabled()
+				obj.(ActivateListener).APIEnabled()
 			case deactivate:
-				obj.(DeactivateListener).apiDisabled()
+				obj.(DeactivateListener).APIDisabled()
 			case stop:
-				obj.(StopListener).dispose()
+				obj.(StopListener).Dispose()
 			case controllers:
-				obj.(ControllersListener).controllersProbed()
+				obj.(ControllersListener).ControllersProbed()
 			case frame:
-				obj.(FrameListener).frameRendered()
+				obj.(FrameListener).FrameRendered()
 			case scanline:
 				scanline, e := r.stream.readInt()
 				if e != nil {
 					return e
 				}
-				obj.(scanlinePoint).listener.scanlineRendered(scanline)
+				obj.(scanlinePoint).listener.ScanlineRendered(scanline)
 			case scanlineCycle:
 				scanline, e := r.stream.readInt()
 				if e != nil {
@@ -227,7 +227,7 @@ func (r *remoteAPI) probeEvents() error {
 				if e != nil {
 					return e
 				}
-				obj.(scanlineCyclePoint).listener.cyclePerformed(scanline, scanlineCycle, address, rendering)
+				obj.(scanlineCyclePoint).listener.CyclePerformed(scanline, scanlineCycle, address, rendering)
 			case spriteZero:
 				scanline, e := r.stream.readInt()
 				if e != nil {
@@ -237,13 +237,13 @@ func (r *remoteAPI) probeEvents() error {
 				if e != nil {
 					return e
 				}
-				obj.(SpriteZeroListener).spriteZeroHit(scanline, scanlineCycle)
+				obj.(SpriteZeroListener).SpriteZeroHit(scanline, scanlineCycle)
 			case status:
 				message, e := r.stream.readString()
 				if e != nil {
 					return e
 				}
-				obj.(StatusListener).statusChanged(message)
+				obj.(StatusListener).StatusChanged(message)
 			default:
 				return fmt.Errorf("Unknown listener type: %d", eventType)
 			}
