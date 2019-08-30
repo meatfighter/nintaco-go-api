@@ -45,70 +45,70 @@ type API interface {
 	FillRect(x, y, width, height int)
 	FillRoundRect(x, y, width, height, arcWidth, arcHeight int)
 	FlipDiskSide()
-	GetA()
-	GetArchiveEntries(archiveFileName string)
-	GetCameraX()
-	GetCameraY()
-	GetCharsWidth(chars []rune, monospaced bool)
-	GetChrRomSize()
-	GetColor()
-	GetContentDirectory()
-	GetDefaultArchiveEntry(archiveFileName string)
-	GetDiskSides()
-	GetDot()
-	GetFileInfo()
-	GetFrameCount()
-	GetP()
-	GetPC()
-	GetPPUt()
-	GetPPUv()
-	GetPPUx()
-	GetPixel(x, y int)
+	GetA() int
+	GetArchiveEntries(archiveFileName string) []string
+	GetCameraX() int
+	GetCameraY() int
+	GetCharsWidth(chars []rune, monospaced bool) int
+	GetChrRomSize() int
+	GetColor() int
+	GetContentDirectory() string
+	GetDefaultArchiveEntry(archiveFileName string) string
+	GetDiskSides() int
+	GetDot() int
+	GetFileInfo() string
+	GetFrameCount() int
+	GetP() int
+	GetPC() int
+	GetPPUt() int
+	GetPPUv() int
+	GetPPUx() int
+	GetPixel(x, y int) int
 	GetPixels(pixels []int)
-	GetPrgRomSize()
-	GetS()
-	GetScanline()
-	GetScanlineCount()
-	GetStringWidth(str string, monospaced bool)
-	GetTVSystem()
-	GetWorkingDirectory()
-	GetX()
-	GetY()
-	GetZapperX()
-	GetZapperY()
+	GetPrgRomSize() int
+	GetS() int
+	GetScanline() int
+	GetScanlineCount() int
+	GetStringWidth(str string, monospaced bool) int
+	GetTVSystem() string
+	GetWorkingDirectory() string
+	GetX() int
+	GetY() int
+	GetZapperX() int
+	GetZapperY() int
 	Glitch()
 	InsertCoin()
 	InsertDisk(disk, side int)
-	IsC()
-	IsD()
-	IsI()
-	IsN()
-	IsPPUw()
-	IsPaused()
-	IsSpriteZeroHit()
-	IsV()
-	IsZ()
-	IsZapperTrigger()
+	IsC() bool
+	IsD() bool
+	IsI() bool
+	IsN() bool
+	IsPPUw() bool
+	IsPaused() bool
+	IsSpriteZeroHit() bool
+	IsV() bool
+	IsZ() bool
+	IsZapperTrigger() bool
 	LoadState(stateFileName string)
 	Open(fileName string)
 	OpenArchiveEntry(archiveFileName, entryFileName string)
 	OpenDefaultArchiveEntry(archiveFileName string)
-	PeekCPU(address int)
-	PeekCPU16(address int)
-	PeekCPU32(address int)
+	PeekCPU(address int) int
+	PeekCPU16(address int) int
+	PeekCPU32(address int) int
 	PowerCycle()
 	PressServiceButton()
 	QuickLoadState(slot int)
 	QuickSaveState(slot int)
-	ReadCPU(address int)
-	ReadCPU16(address int)
-	ReadCPU32(address int)
-	ReadChrRom(index int)
-	ReadGamepad(gamepad, button int)
-	ReadOAM(address int)
-	ReadPPU(address int)
-	ReadPaletteRAM(address int)
-	ReadPrgRom(index int)
+	ReadCPU(address int) int
+	ReadCPU16(address int) int
+	ReadCPU32(address int) int
+	ReadChrRom(index int) int
+	ReadGamepad(gamepad, button int) bool
+	ReadOAM(address int) int
+	ReadPPU(address int) int
+	ReadPaletteRAM(address int) int
+	ReadPrgRom(index int) int
 	RemoveAccessPointListener(listener AccessPointListener)
 	RemoveActivateListener(listener ActivateListener)
 	RemoveCheat(address, value, compare int)
