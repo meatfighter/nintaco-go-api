@@ -8,7 +8,8 @@ import (
 var apiMutex = &sync.Mutex{}
 var api API
 
-func initRemoteAPI(host string, port int) {
+// InitRemoteAPI initializes the Remote API.
+func InitRemoteAPI(host string, port int) {
 	apiMutex.Lock()
 	defer apiMutex.Unlock()
 	if api == nil && len(strings.TrimSpace(host)) > 0 {
@@ -16,6 +17,7 @@ func initRemoteAPI(host string, port int) {
 	}
 }
 
-func getAPI() API {
+// GetAPI provides the handle to the API.
+func GetAPI() API {
 	return api
 }
