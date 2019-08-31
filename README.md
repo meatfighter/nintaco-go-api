@@ -6,7 +6,7 @@ This API provides programmatic control of [the Nintaco NES/Famicom emulator](htt
 
 ### Initialization
 
-Go programs control the emulator externally using an internal socket connection for interprocess communication. At the start of a program, specify the host and port consistent with the value entered into the Start Program Server window using:
+Go programs control the emulator externally using an internal socket connection for interprocess communication. At the beginning of a program, specify the host and port consistent with the values entered into the Start Program Server window using:
 
 ```
 nintaco.InitRemoteAPI("localhost", 9999)
