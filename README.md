@@ -4,7 +4,7 @@
 
 This API provides programmatic control of [the Nintaco NES/Famicom emulator](https://nintaco.com/) at a very granular level. It supports direct access to CPU/PPU/APU Memory and registers, to controller input and to save states. And it offers a multitude of listeners that enable programs to tap into emulation events.
 
-Go programs control the emulator remotely using an internal socket connection for interprocess communication.
+Go programs control the emulator externally using an internal socket connection for interprocess communication.
 
 ### Listeners
 
