@@ -4,3 +4,11 @@ package nintaco
 type StopListener interface {
 	Dispose()
 }
+
+// StopFunc ...
+type StopFunc func()
+
+// Dispose ...
+func (f StopFunc) Dispose() {
+	f()
+}

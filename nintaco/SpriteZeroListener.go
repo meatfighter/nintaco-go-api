@@ -4,3 +4,11 @@ package nintaco
 type SpriteZeroListener interface {
 	SpriteZeroHit(scanline, scanlineCycle int)
 }
+
+// SpriteZeroFunc ...
+type SpriteZeroFunc func(int, int)
+
+// SpriteZeroHit ...
+func (f SpriteZeroFunc) SpriteZeroHit(scanline, scanlineCycle int) {
+	f(scanline, scanlineCycle)
+}

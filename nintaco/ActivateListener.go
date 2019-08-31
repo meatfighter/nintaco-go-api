@@ -4,3 +4,11 @@ package nintaco
 type ActivateListener interface {
 	APIEnabled()
 }
+
+// ActivateFunc ...
+type ActivateFunc func()
+
+// APIEnabled ...
+func (f ActivateFunc) APIEnabled() {
+	f()
+}

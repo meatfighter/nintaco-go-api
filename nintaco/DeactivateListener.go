@@ -4,3 +4,11 @@ package nintaco
 type DeactivateListener interface {
 	APIDisabled()
 }
+
+// DeactivateFunc ...
+type DeactivateFunc func()
+
+// APIDisabled ...
+func (f DeactivateFunc) APIDisabled() {
+	f()
+}

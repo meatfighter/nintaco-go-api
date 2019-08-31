@@ -4,3 +4,11 @@ package nintaco
 type ControllersListener interface {
 	ControllersProbed()
 }
+
+// ControllersFunc ...
+type ControllersFunc func()
+
+// ControllersProbed ...
+func (f ControllersFunc) ControllersProbed() {
+	f()
+}

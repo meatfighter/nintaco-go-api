@@ -4,3 +4,11 @@ package nintaco
 type FrameListener interface {
 	FrameRendered()
 }
+
+// FrameFunc ...
+type FrameFunc func()
+
+// FrameRendered ...
+func (f FrameFunc) FrameRendered() {
+	f()
+}

@@ -4,3 +4,11 @@ package nintaco
 type ScanlineListener interface {
 	ScanlineRendered(scanline int)
 }
+
+// ScanlineFunc ...
+type ScanlineFunc func(int)
+
+// ScanlineRendered ...
+func (f ScanlineFunc) ScanlineRendered(scanline int) {
+	f(scanline)
+}
