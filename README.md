@@ -31,3 +31,6 @@ The API is _not_ safe for concurrent use. After invoking `API.Run`, the only gor
 ### Details
 
 This API is a translation of [the Nintaco Java API](https://nintaco.com/api.html). Refer to [the Javadoc](https://nintaco.com/javadoc/index.html) for a detailed description of [the API methods](https://nintaco.com/javadoc/nintaco/api/API.html), the listeners and the constants.
+
+### Examples
+
