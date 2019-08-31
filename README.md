@@ -39,6 +39,25 @@ func (h *helloWorld) launch() {
 }
 ```
 
+On the other hand, if a method or an ordinary function has the same argument list and return type of a listener, but it differs by name or it lacks a receiver, then it can still be passed to a `Add`/`Remove` method through a cast to a listener type. For each listener type, the API provides a 'NewXFunc' function that performs the cast. In [the Tetris Bot](https://github.com/meatfighter/nintaco-go-api-tetris-bot) example, this approach is employed because it registers 4 separate 'AccessPointListener's:    
+
+```go
+func (t *tetrisBot) launch() {
+	t.api.AddActivateListener(nintaco.NewActivateFunc(t.apiEnabled))
+	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.updateScore),
+		nintaco.AccessPointTypePreExecute, 0x9C35)
+	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.speedUpDrop),
+		nintaco.AccessPointTypePreExecute, 0x8977)
+	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.tetriminoYUpdated),
+		nintaco.AccessPointTypePreWrite, addressTetriminoY1)
+	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.tetriminoYUpdated),
+		nintaco.AccessPointTypePreWrite, addressTetriminoY2)
+	t.api.AddFrameListener(nintaco.NewFrameFunc(t.renderFinished))
+	t.api.AddStatusListener(nintaco.NewStatusFunc(t.statusChanged))
+	t.api.Run()
+}
+```
+
 ### Concurrency
 
 The API is _not_ safe for concurrent use. After invoking `API.Run`, the only goroutine that can safely invoke API methods is the one that executes the listeners. While a listener is running, the emulator is effectively frozen; listeners need to return in a timely manner to avoid slowing down emulation. Programs can start additional goroutines to perform parallel computations; however, the results of those computations should be exposed to and used from the listeners to act on the API.
