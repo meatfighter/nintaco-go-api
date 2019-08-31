@@ -8,7 +8,13 @@ type ActivateListener interface {
 // ActivateFunc ...
 type ActivateFunc func()
 
+// NewActivateFunc ...
+func NewActivateFunc(listener func()) *ActivateFunc {
+	f := ActivateFunc(listener)
+	return &f
+}
+
 // APIEnabled ...
-func (f ActivateFunc) APIEnabled() {
-	f()
+func (f *ActivateFunc) APIEnabled() {
+	(*f)()
 }

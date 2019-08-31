@@ -8,7 +8,13 @@ type StatusListener interface {
 // StatusFunc ...
 type StatusFunc func(string)
 
+// NewStatusFunc ...
+func NewStatusFunc(listener func(string)) *StatusFunc {
+	f := StatusFunc(listener)
+	return &f
+}
+
 // StatusChanged ...
-func (f StatusFunc) StatusChanged(message string) {
-	f(message)
+func (f *StatusFunc) StatusChanged(message string) {
+	(*f)(message)
 }

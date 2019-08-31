@@ -8,7 +8,13 @@ type ScanlineListener interface {
 // ScanlineFunc ...
 type ScanlineFunc func(int)
 
+// NewScanlineFunc ...
+func NewScanlineFunc(listener func(int)) *ScanlineFunc {
+	f := ScanlineFunc(listener)
+	return &f
+}
+
 // ScanlineRendered ...
-func (f ScanlineFunc) ScanlineRendered(scanline int) {
-	f(scanline)
+func (f *ScanlineFunc) ScanlineRendered(scanline int) {
+	(*f)(scanline)
 }

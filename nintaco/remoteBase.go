@@ -84,6 +84,7 @@ func (r *remoteAPI) Run() {
 func (r *remoteAPI) executeProbeEventsLoop() (e error) {
 	defer func() {
 		if r := recover(); r != nil {
+			fmt.Println(r)
 			fmt.Println(string(debug.Stack()))
 			e = io.EOF
 		}
@@ -183,7 +184,7 @@ func (r *remoteAPI) probeEvents() error {
 			if e != nil {
 				return e
 			}
-			result := obj.(accessPoint).listener.AccessPointHit(accessPointType, address, value)
+			result := obj.(*accessPoint).listener.AccessPointHit(accessPointType, address, value)
 			e = r.stream.writeByte(eventResponse)
 			if e != nil {
 				return e
@@ -209,7 +210,7 @@ func (r *remoteAPI) probeEvents() error {
 				if e != nil {
 					return e
 				}
-				obj.(scanlinePoint).listener.ScanlineRendered(scanline)
+				obj.(*scanlinePoint).listener.ScanlineRendered(scanline)
 			case scanlineCycle:
 				scanline, e := r.stream.readInt()
 				if e != nil {
@@ -227,7 +228,7 @@ func (r *remoteAPI) probeEvents() error {
 				if e != nil {
 					return e
 				}
-				obj.(scanlineCyclePoint).listener.CyclePerformed(scanline, scanlineCycle, address, rendering)
+				obj.(*scanlineCyclePoint).listener.CyclePerformed(scanline, scanlineCycle, address, rendering)
 			case spriteZero:
 				scanline, e := r.stream.readInt()
 				if e != nil {

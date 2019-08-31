@@ -8,7 +8,13 @@ type FrameListener interface {
 // FrameFunc ...
 type FrameFunc func()
 
+// NewFrameFunc ...
+func NewFrameFunc(listener func()) *FrameFunc {
+	f := FrameFunc(listener)
+	return &f
+}
+
 // FrameRendered ...
-func (f FrameFunc) FrameRendered() {
-	f()
+func (f *FrameFunc) FrameRendered() {
+	(*f)()
 }

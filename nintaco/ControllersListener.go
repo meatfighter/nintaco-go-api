@@ -8,7 +8,13 @@ type ControllersListener interface {
 // ControllersFunc ...
 type ControllersFunc func()
 
+// NewControllersFunc ...
+func NewControllersFunc(listener func()) *ControllersFunc {
+	f := ControllersFunc(listener)
+	return &f
+}
+
 // ControllersProbed ...
-func (f ControllersFunc) ControllersProbed() {
-	f()
+func (f *ControllersFunc) ControllersProbed() {
+	(*f)()
 }

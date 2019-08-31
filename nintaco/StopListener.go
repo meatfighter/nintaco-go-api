@@ -8,7 +8,13 @@ type StopListener interface {
 // StopFunc ...
 type StopFunc func()
 
+// NewStopFunc ...
+func NewStopFunc(listener func()) *StopFunc {
+	f := StopFunc(listener)
+	return &f
+}
+
 // Dispose ...
-func (f StopFunc) Dispose() {
-	f()
+func (f *StopFunc) Dispose() {
+	(*f)()
 }
