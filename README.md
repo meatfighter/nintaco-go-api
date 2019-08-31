@@ -43,18 +43,18 @@ On the other hand, if a method or an ordinary function has the same argument lis
 
 ```go
 func (t *tetrisBot) launch() {
-	t.api.AddActivateListener(nintaco.NewActivateFunc(t.apiEnabled))
-	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.updateScore),
-		nintaco.AccessPointTypePreExecute, 0x9C35)
-	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.speedUpDrop),
-		nintaco.AccessPointTypePreExecute, 0x8977)
-	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.tetriminoYUpdated),
-		nintaco.AccessPointTypePreWrite, addressTetriminoY1)
-	t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.tetriminoYUpdated),
-		nintaco.AccessPointTypePreWrite, addressTetriminoY2)
-	t.api.AddFrameListener(nintaco.NewFrameFunc(t.renderFinished))
-	t.api.AddStatusListener(nintaco.NewStatusFunc(t.statusChanged))
-	t.api.Run()
+    t.api.AddActivateListener(nintaco.NewActivateFunc(t.apiEnabled))
+    t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.updateScore),
+        nintaco.AccessPointTypePreExecute, 0x9C35)
+    t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.speedUpDrop),
+        nintaco.AccessPointTypePreExecute, 0x8977)
+    t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.tetriminoYUpdated),
+        nintaco.AccessPointTypePreWrite, addressTetriminoY1)
+    t.api.AddAccessPointListener(nintaco.NewAccessPointFunc(t.tetriminoYUpdated),
+        nintaco.AccessPointTypePreWrite, addressTetriminoY2)
+    t.api.AddFrameListener(nintaco.NewFrameFunc(t.renderFinished))
+    t.api.AddStatusListener(nintaco.NewStatusFunc(t.statusChanged))
+    t.api.Run()
 }
 ```
 
