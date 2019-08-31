@@ -20,7 +20,7 @@ api := nintaco.GetAPI()
 
 ### Listeners
 
-The API starts out in a disabled state and while disabled only the `Add`/`Remove` listener methods work. After adding listeners, a program calls `Run` to activate the API. It signals that everything is setup and the program is ready to receive events. `Run` never returns. Instead, it enters an infinite loop that maintains the connection to the emulator. 
+The API starts out in a disabled state and while disabled only the `Add`/`Remove` listener methods work. After adding listeners, a program calls `Run` to activate the API; it signals that everything is setup and the program is ready to receive events. `Run` never returns. Instead, it enters an infinite loop that maintains the connection to the emulator. 
 
 Listeners are cached and they rarely need to be removed. In the event that the API is temporarily disabled, listeners do not need to be re-added. They are automatically removed on program shutdown. And most of the API methods that modify internal states do not have the side effect of triggering listeners. For example, a program that receives events when a region of CPU memory is updated can modify the same region from the event listener without creating infinite recursion.
 
