@@ -39,7 +39,7 @@ func (h *helloWorld) launch() {
 }
 ```
 
-On the other hand, if a method or an ordinary function has the same argument list and return type of a listener, but it differs by name or it lacks a receiver, then it can still be passed to an `Add`/`Remove` method through a cast to a listener type. For each listener type, the API provides a `NewXFunc` function that performs the cast. In [the Tetris Bot](https://github.com/meatfighter/nintaco-go-api-tetris-bot) example, this approach is employed because it registers 4 separate `AccessPointListener`s:    
+On the other hand, if a method or an ordinary function has the same argument list and return type of a listener, but it differs by name or it lacks a receiver, then it can still be passed to an `Add`/`Remove` method through a cast to a listener type. The API provides a `NewXFunc` function for each listener that performs the cast. In [the Tetris Bot](https://github.com/meatfighter/nintaco-go-api-tetris-bot) example, this approach is employed because it registers 4 separate `AccessPointListener`s:    
 
 ```go
 func (t *tetrisBot) launch() {
