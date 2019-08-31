@@ -8,13 +8,13 @@ This API provides programmatic control of [the Nintaco NES/Famicom emulator](htt
 
 Go programs control the emulator externally using an internal socket connection for interprocess communication. At the beginning of a program, specify the host and port consistent with the values entered into the Start Program Server window using:
 
-```
+```go
 nintaco.InitRemoteAPI("localhost", 9999)
 ```
 
 After that, the singleton API instance can be obtained via:
 
-```
+```go
 api := nintaco.GetAPI()
 ```
 
@@ -30,12 +30,12 @@ If a type satifies one of the listener interfaces, it can be passed directly to 
 
 ```go
 func (h *helloWorld) launch() {
-	h.api.AddFrameListener(h)
-	h.api.AddStatusListener(h)
-	h.api.AddActivateListener(h)
-	h.api.AddDeactivateListener(h)
-	h.api.AddStopListener(h)
-	h.api.Run()
+    h.api.AddFrameListener(h)
+    h.api.AddStatusListener(h)
+    h.api.AddActivateListener(h)
+    h.api.AddDeactivateListener(h)
+    h.api.AddStopListener(h)
+    h.api.Run()
 }
 ```
 
