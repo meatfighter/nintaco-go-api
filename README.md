@@ -30,12 +30,12 @@ If a type satifies one of the listener interfaces, it can be passed directly to 
 
 ```
 func (h *helloWorld) launch() {
-	h.api.AddFrameListener(h)
-	h.api.AddStatusListener(h)
-	h.api.AddActivateListener(h)
-	h.api.AddDeactivateListener(h)
-	h.api.AddStopListener(h)
-	h.api.Run()
+    h.api.AddFrameListener(h)
+    h.api.AddStatusListener(h)
+    h.api.AddActivateListener(h)
+    h.api.AddDeactivateListener(h)
+    h.api.AddStopListener(h)
+    h.api.Run()
 }
 ```
 
