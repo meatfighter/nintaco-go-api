@@ -27,3 +27,7 @@ The easiest way for a program to do something once-per-frame is within a `FrameL
 ### Concurrency
 
 The API is _not_ safe for concurrent use. After invoking `API.Run`, the only goroutine that can safely invoke API methods is the one that executes the listeners. While a listener is running, the emulator is effectively frozen; listeners need to return in a timely manner to avoid slowing down emulation. Programs can start additional goroutines to perform parallel computations; however, the results of those computations should be exposed to and used from the listeners to act on the API.
+
+### Details
+
+This API is a translation of [the Nintaco Java API](https://nintaco.com/api.html). Refer to [the Javadoc](https://nintaco.com/javadoc/index.html) for a detailed description of [the API methods](https://nintaco.com/javadoc/nintaco/api/API.html), the listeners and the constants.
