@@ -5,16 +5,16 @@ type ControllersListener interface {
 	ControllersProbed()
 }
 
-// ControllersFunc ...
+// ControllersFunc is a ControllersListener.
 type ControllersFunc func()
 
-// NewControllersFunc ...
+// NewControllersFunc casts a function into a ControllersListener.
 func NewControllersFunc(listener func()) *ControllersFunc {
 	f := ControllersFunc(listener)
 	return &f
 }
 
-// ControllersProbed ...
+// ControllersProbed is the method that delegates the call to the listener function.
 func (f *ControllersFunc) ControllersProbed() {
 	(*f)()
 }

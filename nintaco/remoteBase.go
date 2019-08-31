@@ -60,7 +60,7 @@ func (r *remoteAPI) Run() {
 	r.running = true
 	for {
 		r.fireStatusChanged("Connecting to %s:%d...", r.host, r.port)
-		conn, e := net.Dial("tcp", fmt.Sprintf("%s:%d", r.host, r.port)) // TODO TRY WRAPPING HOST WITH [ ]
+		conn, e := net.Dial("tcp", fmt.Sprintf("[%s]:%d", r.host, r.port))
 		if e == nil {
 			r.stream = newDataStream(conn)
 			r.fireStatusChanged("Connection established.")

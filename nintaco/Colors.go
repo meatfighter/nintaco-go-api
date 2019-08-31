@@ -1,6 +1,6 @@
 package nintaco
 
-// Colors
+// Palette colors.
 const (
 	ColorGray             = 0x00
 	ColorDarkBlue         = 0x01

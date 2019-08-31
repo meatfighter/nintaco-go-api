@@ -5,16 +5,16 @@ type ActivateListener interface {
 	APIEnabled()
 }
 
-// ActivateFunc ...
+// ActivateFunc is an ActivateListener.
 type ActivateFunc func()
 
-// NewActivateFunc ...
+// NewActivateFunc casts a function into an ActivateListener.
 func NewActivateFunc(listener func()) *ActivateFunc {
 	f := ActivateFunc(listener)
 	return &f
 }
 
-// APIEnabled ...
+// APIEnabled is the method that delegates the call to the listener function.
 func (f *ActivateFunc) APIEnabled() {
 	(*f)()
 }

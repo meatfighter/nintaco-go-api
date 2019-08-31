@@ -5,16 +5,16 @@ type StatusListener interface {
 	StatusChanged(message string)
 }
 
-// StatusFunc ...
+// StatusFunc is a StatusListener.
 type StatusFunc func(string)
 
-// NewStatusFunc ...
+// NewStatusFunc casts a function into a StatusListener.
 func NewStatusFunc(listener func(string)) *StatusFunc {
 	f := StatusFunc(listener)
 	return &f
 }
 
-// StatusChanged ...
+// StatusChanged is the method that delegates the call to the listener function.
 func (f *StatusFunc) StatusChanged(message string) {
 	(*f)(message)
 }

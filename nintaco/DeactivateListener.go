@@ -5,16 +5,16 @@ type DeactivateListener interface {
 	APIDisabled()
 }
 
-// DeactivateFunc ...
+// DeactivateFunc is a DeactivateListener.
 type DeactivateFunc func()
 
-// NewDeactivateFunc ...
+// NewDeactivateFunc casts a function into a DeactivateListener.
 func NewDeactivateFunc(listener func()) *DeactivateFunc {
 	f := DeactivateFunc(listener)
 	return &f
 }
 
-// APIDisabled ...
+// APIDisabled is the method that delegates the call to the listener function.
 func (f *DeactivateFunc) APIDisabled() {
 	(*f)()
 }

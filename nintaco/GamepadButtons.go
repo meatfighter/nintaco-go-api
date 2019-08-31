@@ -1,6 +1,7 @@
 package nintaco
 
-// GamepadButtons
+// A set of constants used by the API.ReadGamepad and API.WriteGamepad methods,
+// each referring to different button of the standard controller.
 const (
 	GamepadButtonA      = 0
 	GamepadButtonB      = 1
