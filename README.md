@@ -26,6 +26,19 @@ Listeners are cached and they rarely need to be removed. In the event that the A
 
 The easiest way for a program to do something once-per-frame is within a `FrameListener`, which is called back immediately after a full frame was rendered, but just before the frame is displayed to the user. `ScanlineListener` works in a similar way, but it is invoked after a specified scanline was rendered. `ScanlineCycleListener` takes that one step further and responds to a specified dot. A program can manipulate controller input from a `ControllersListener`, which is called back immediately after the controllers were probed for data, but just before the probed data is exposed to the machine. `AccessPointListener` is triggered by a specified CPU Memory read or write, or instruction execution point and `SpriteZeroListener` is triggered by sprite zero hits. Finally, `ActivateListener`, `DeactivateListener`, `StatusListener` and `StopListener` respond to API enabled events, API disabled events, status message events and Stop button events, respectively.
 
+If a type satifies one of the listener interfaces, it can be passed directly to the corresponding `Add`/`Remove` method. This technique appears in [the Hello World example](https://github.com/meatfighter/nintaco-go-api-hello-world):
+
+```
+func (h *helloWorld) launch() {
+	h.api.AddFrameListener(h)
+	h.api.AddStatusListener(h)
+	h.api.AddActivateListener(h)
+	h.api.AddDeactivateListener(h)
+	h.api.AddStopListener(h)
+	h.api.Run()
+}
+```
+
 ### Concurrency
 
 The API is _not_ safe for concurrent use. After invoking `API.Run`, the only goroutine that can safely invoke API methods is the one that executes the listeners. While a listener is running, the emulator is effectively frozen; listeners need to return in a timely manner to avoid slowing down emulation. Programs can start additional goroutines to perform parallel computations; however, the results of those computations should be exposed to and used from the listeners to act on the API.
