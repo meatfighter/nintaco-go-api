@@ -28,14 +28,14 @@ The easiest way for a program to do something once-per-frame is within a `FrameL
 
 If a type satifies one of the listener interfaces, it can be passed directly to the corresponding `Add`/`Remove` method. This technique appears in [the Hello World example](https://github.com/meatfighter/nintaco-go-api-hello-world):
 
-```
+```go
 func (h *helloWorld) launch() {
-    h.api.AddFrameListener(h)
-    h.api.AddStatusListener(h)
-    h.api.AddActivateListener(h)
-    h.api.AddDeactivateListener(h)
-    h.api.AddStopListener(h)
-    h.api.Run()
+	h.api.AddFrameListener(h)
+	h.api.AddStatusListener(h)
+	h.api.AddActivateListener(h)
+	h.api.AddDeactivateListener(h)
+	h.api.AddStopListener(h)
+	h.api.Run()
 }
 ```
 
