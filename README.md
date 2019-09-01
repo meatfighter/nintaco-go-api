@@ -70,4 +70,4 @@ This API is a translation of [the Nintaco Java API](https://nintaco.com/api.html
 
 * [Hello World](https://github.com/meatfighter/nintaco-go-api-hello-world) displays "Hello, World!" and a bouncing ball above a running game.
 * [Tetris Bot](https://github.com/meatfighter/nintaco-go-api-tetris-bot) is an AI that plays Tetris.
-
+* [Screenshot](https://github.com/meatfighter/nintaco-go-api-screenshot) captures gameplay screenshots.
